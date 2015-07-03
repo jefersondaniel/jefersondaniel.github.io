@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block body %}
+  <header class="site-header clearfix" role="banner">
+  	<div class="site-branding">
+    	<h1 class="site-title">{{ SITENAME }}</h1>
+    	<h2 class="site-description">{{ SITESUBTITLE }}</h2>
+    </div>
+		<nav id="site-navigation" class="main-navigation nav-horizontal" role="navigation">	
+			<div class="menu-toggle">Menu</div>
+			<div class="menu">
+				<ul class="social nav-menu">
+          <li><a href="{{ SITEURL }}/">Início</a></li>
+          <li><a href="{{ SITEURL }}/blog/">Blog</a></li>
+				  {% for p in PAGES %}
+        	<li><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
+      		{% endfor %}
+	        {% for name, link in SOCIAL %}
+            {% if name != "Linkedin" %}
+	           <li><a href="{{ link }}">{{ name }}</a></li>
+            {% endif %}
+	        {% endfor %}
+				</ul>
+			</div>
+		</nav>
+  </header>
+  {% block content %}
+  {% endblock %}  
+  <footer class="clearfix">    
+    <div class="copy wrapper">    
+      <p role="contentinfo">© 2014 {{ AUTHOR }}<br>
+      Proudly powered by <a href="http://getpelican.com/">Pelican</a>.</p>
+    </div>
+  </footer>
+{% endblock %}

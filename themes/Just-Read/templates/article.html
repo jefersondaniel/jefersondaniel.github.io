@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}{{ article.title }} - {{ SITENAME }}{% endblock %}
+{% block content %}
+<main role="main" class="content clearfix">    
+    <article itemscope="" itemtype="http://schema.org/BlogPosting">
+        <div class="main wrapper">
+            <h1 itemprop="name headline">{{ article.title }}</h1>
+            <div itemprop="author" itemscope="" itemtype="http://schema.org/Person" class="author">
+                Escrito por 
+                <span itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+                    <span itemprop="name">
+                        <a href="https://plus.google.com/110132654248227775215" itemprop="url" rel="author">Jeferson Daniel</a>
+                    </span>
+                </span>
+                em
+                <time datetime="{{ article.date.isoformat() }}" itemprop="datePublished">{{ article.locale_date }}</time>
+            </div>
+            <ul class="tag">
+                {% for tag in article.tags %}
+                    <li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></li>
+                {% endfor %}
+            </ul>
+            <div itemprop="articleBody" class="post-body">
+                {{ article.content }}
+            </div>
+                        
+            {% if DISQUS_SITENAME %}
+            <div class="comments">
+            <h2>Comentários</h2>
+                <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                   var disqus_identifier = "{{ article.url }}";
+                   (function() {
+                   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                   dsq.src = '//{{ DISQUS_SITENAME }}.disqus.com/embed.js';
+                   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                  })();
+                </script>
+            </div>
+            {% endif %}            
+        </div>
+    </article>    
+</main>
+{% endblock %}

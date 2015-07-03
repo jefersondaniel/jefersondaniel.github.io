@@ -1,0 +1,7 @@
+.divshot-cache
+*.pid
+*.pyc
+*.swp
+output/*
+cache/*
+
