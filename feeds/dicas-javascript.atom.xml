@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Jeferson Daniel</title><link href="/" rel="alternate"></link><link href="/feeds/dicas-javascript.atom.xml" rel="self"></link><id>/</id><updated>2016-05-01T00:00:00-03:00</updated><entry><title>Mantendo padrões de código Javascript</title><link href="/blog/mantendo-padroes-de-codigo-javascript/" rel="alternate"></link><updated>2016-05-01T00:00:00-03:00</updated><author><name>Jeferson Daniel</name></author><id>tag:,2016-05-01:blog/mantendo-padroes-de-codigo-javascript/</id><summary type="html">&lt;p&gt;Um código desorganizado, com variáveis seguindo diferentes padrões de escrita, sem atenção para declarações e desuso de variáveis é muito propenso a erros. Para facilitar nossa vida existem ferramentas de lint como o &lt;a href="http://eslint.org"&gt;ESLint&lt;/a&gt;, que vou explicar nesse post.&lt;/p&gt;
+&lt;p&gt;O ESLint é uma ferramenta bastante flexível para análise de código que busca trechos problemáticos ou que não seguem padrões configurados. Por exemplo: identação, nomenclatura de variáveis e globais. Essa análise pode ser feita através da linha de comando ou até mesmo no seu editor de código. É preciso que você tenha o nodejs instalado em seu computador para poder instalar esse lint com o comando:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;npm install -g eslint
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Feito isso você pode criar um arquivo ".eslintrc" na pasta de seu projeto com as regras recomendadas e adicionar as suas preferências. Podemos testar a seguinte configuração para projetos frontend:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;quot;extends&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;eslint:recommended&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;quot;env&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;browser&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;quot;rules&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;semi&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;error&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;never&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;camelcase&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;warn&amp;quot;&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Esse arquivo estende um conjunto de regras recomendado e especifica o ambiente browser, isso serve que variaveis globais do navegador não sejam interpretadas como não definidas. Além disso o arquivo adiciona as seguintes regras:
+&lt;em&gt; semi: Verifica se o código nunca usa ponto-e-virgula nos finais de linha,trata como erro linhas de código fora do padrão.
+&lt;/em&gt; camelcase: Verifica se as variaveis são nomeadas seguindo o padrão &lt;em&gt;camelCase&lt;/em&gt;, trata como aviso linhas de código fora do padrão.&lt;/p&gt;
+&lt;p&gt;Você pode testar criando um arquivo "lala.js" e rodando o comando &lt;strong&gt;eslint lala.js&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;var a = 1
+var ugly_var = &amp;quot;2&amp;quot;;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;eslint lala.js
+
+/home/jeferson/lala.js
+  1:5   error    &lt;span class="s1"&gt;&amp;#39;a&amp;#39;&lt;/span&gt; is defined but never used               no-unused-vars
+  2:5   warning  Identifier &lt;span class="s1"&gt;&amp;#39;ugly_var&amp;#39;&lt;/span&gt; is not in camel &lt;span class="k"&gt;case&lt;/span&gt;  camelcase
+  2:5   error    &lt;span class="s1"&gt;&amp;#39;ugly_var&amp;#39;&lt;/span&gt; is defined but never used        no-unused-vars
+  2:19  error    Extra semicolon                             semi
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Viu como é fácil manter padrões de código? ainda existe bastante &lt;a href="http://eslint.org/docs/rules"&gt;regras&lt;/a&gt; e &lt;a href="http://eslint.org/docs/user-guide/integrations"&gt;plugins&lt;/a&gt; para esse linter. Espero que tenha se interessado, pois é uma ferramenta bastante útil e que fica melhor se configurada no seu editor de código. Com o Sublime, basta instalar os pacotes &lt;strong&gt;Sublime-Linter&lt;/strong&gt; e &lt;strong&gt;Sublime-Linter-contrib-eslint&lt;/strong&gt;&lt;/p&gt;</summary></entry></feed>
