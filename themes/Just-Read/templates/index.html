@@ -2,6 +2,9 @@
 {% block content_title %}{% endblock %}
 {% block body_attributes %}class="wallpaper"{% endblock %}
 {% block body %}
+<div class="image-container">
+    <img class="image" alt="Mesa com Computador" src="{{ SITEURL }}/theme/images/computer.svg"/>
+</div>
 <main class="title-container">
     <h1>{{SITENAME}}</h1>
     <h2>{{SITESUBTITLE}}</h2>
@@ -12,7 +15,4 @@
         {% endfor %}
     </ul>
 </main>
-<div class="image-container">
-    <img class="image" alt="Mesa com Computador" src="{{ SITEURL }}/theme/images/computer.png"/>
-</div>
 {% endblock %}
